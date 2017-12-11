@@ -59,26 +59,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
 
-            <!--<plugin>-->
-                <!--<groupId>org.eclipse.jetty</groupId>-->
-                <!--<artifactId>jetty-maven-plugin</artifactId>-->
-                <!--<version>9.4.0.v20161208</version>-->
-                <!--<configuration>-->
-                    <!--<systemProperties>-->
-                        <!--<systemProperty>-->
-                            <!--<name>project.home</name>-->
-                            <!--<value>../target</value>-->
-                        <!--</systemProperty>-->
-                        <!--<systemProperty>-->
-                            <!--<name>jetty.http.port</name>-->
-                            <!--<value>8888</value>-->
-                        <!--</systemProperty>-->
-                    <!--</systemProperties>-->
-                    <!--&lt;!&ndash;<webApp>&ndash;&gt;-->
-                        <!--&lt;!&ndash;<contextPath>/iou-site</contextPath>&ndash;&gt;-->
-                    <!--&lt;!&ndash;</webApp>&ndash;&gt;-->
-                <!--</configuration>-->
-            <!--</plugin>-->
+
 
         </plugins>
 
