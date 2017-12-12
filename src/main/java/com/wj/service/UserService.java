@@ -35,7 +35,7 @@ public class UserService {
     /*
     * 登录成功后插入登录日志
     * */
-    @Transactional
+
     public void loginSuccess(User user) throws Exception {
          user.setCredits(5+user.getCredits());
          LoginLog loginLog=new LoginLog();
