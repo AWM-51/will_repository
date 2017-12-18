@@ -1,5 +1,6 @@
 package com.wj.web;
 
+import com.wj.domain.User;
 import com.wj.service.DataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,7 +21,8 @@ public class DataController {
     @RequestMapping(value = "/entryExcel.html")
     public ModelAndView uploadExcel(HttpServletRequest request,HttpServletResponse response
             ,MultipartFile  file) throws IOException, ParseException {
-        String info=dataService.uploadExcelSuccess(file)==1?"upload success":"upload fail";
+        User user= (User) request.getSession().getAttribute("user");
+        String info=dataService.uploadExcelSuccess(file,user)==1?"upload success":"upload fail";
 
         return new ModelAndView("main","info",info);
     }

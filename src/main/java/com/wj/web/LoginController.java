@@ -1,12 +1,12 @@
 package com.wj.web;
 
 import com.wj.domain.User;
+import com.wj.util.MD5Util;
 import com.wj.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-import sun.awt.SunHints;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
@@ -26,6 +26,7 @@ public class LoginController {
 
         boolean isValidUser =userService.hasMatchUser(loginCommand.getUserName(),loginCommand.getPassword());
         if(!isValidUser){
+            MD5Util md5Util=new MD5Util();
             return new ModelAndView("login","error","用户名或密码错误，你输入的账号为"
                     +loginCommand.getUserName()+" 密码为"+loginCommand.getPassword());
         }

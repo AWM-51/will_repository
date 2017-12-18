@@ -1,4 +1,4 @@
-package com.wj.service;
+package com.wj.util;
 
 import java.security.MessageDigest;
 

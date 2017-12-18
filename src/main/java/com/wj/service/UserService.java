@@ -4,9 +4,9 @@ import com.wj.dao.LoginLogDao;
 import com.wj.dao.UserDao;
 import com.wj.domain.LoginLog;
 import com.wj.domain.User;
+import com.wj.util.MD5Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 

@@ -19,4 +19,6 @@ public class SampleDataDao {
                 ,sampleData.getSampleData_three(),sampleData.getSampleData_four(),sampleData.getSampleData_five()};
          jdbcTemplate.update(INSERT_SAMPLE_DATA_SQL,arg);
     }
+
+
 }

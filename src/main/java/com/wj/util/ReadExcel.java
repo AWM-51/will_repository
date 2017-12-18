@@ -1,4 +1,4 @@
-package com.wj.service;
+package com.wj.util;
 
 import com.wj.domain.SampleData;
 
@@ -26,7 +26,7 @@ public class ReadExcel {
     读取 抽检时间，样本1，2，3，4，5
     录入时间自动生产 格式如 2017-01-02
     * */
-    public List<SampleData> readXls(MultipartFile file) throws IOException, ParseException {
+    public List<SampleData> readXls(MultipartFile file,Date entryTime) throws IOException, ParseException {
         InputStream is = file.getInputStream();
         XSSFWorkbook XSSFWorkbook = new XSSFWorkbook(is);
         SampleData SampleData = null;
@@ -49,7 +49,7 @@ public class ReadExcel {
                     XSSFCell SampleData_four = XSSFRow.getCell(5);
                     XSSFCell SampleData_five = XSSFRow.getCell(6);
                     SampleData.setSampling_time(sample_time.getDateCellValue());
-                    SampleData.setEntry_Time(new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").parse(new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(new Date())));
+                    SampleData.setEntry_Time(entryTime);
                     SampleData.setSampleData_one(Double.valueOf(getValue(SampleData_one)));
                     SampleData.setSampleData_two(Double.valueOf(getValue(SampleData_two)));
                     SampleData.setSampleData_three(Double.valueOf(getValue(SampleData_three)));
