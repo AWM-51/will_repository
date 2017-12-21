@@ -4,11 +4,20 @@ import javax.xml.crypto.Data;
 import java.util.Date;
 
 public class UploadSDExcelLog {
+    private int uploadSDExcel_log_id;
     private Date upload_time;
     private int upload_user_id;
     private String excel_name;
     private int data_num;
     private String remarks;
+
+    public int getUploadSDExcel_log_id() {
+        return uploadSDExcel_log_id;
+    }
+
+    public void setUploadSDExcel_log_id(int uploadSDExcel_log_id) {
+        this.uploadSDExcel_log_id = uploadSDExcel_log_id;
+    }
 
     public void setUpload_time(Date upload_time) {
         this.upload_time = upload_time;

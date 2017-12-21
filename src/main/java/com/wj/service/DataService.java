@@ -6,6 +6,7 @@ import com.wj.domain.SampleData;
 import com.wj.domain.UploadSDExcelLog;
 import com.wj.domain.User;
 import com.wj.util.ReadExcel;
+import org.omg.Messaging.SYNC_WITH_TRANSPORT;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,28 +27,43 @@ public class DataService {
 
 
     /*
-    * 上传成功excel
+    * 上传成功excel,并记录日志
+    *
     * */
     @Transactional
     public int uploadExcelSuccess(MultipartFile file, User user) throws IOException, ParseException {
+        if(file.isEmpty()){
+            return 0;
+        }
+
         ReadExcel readExcel=new ReadExcel();
+        UploadSDExcelLog uploadSDExcelLog=new UploadSDExcelLog();
 
         String fileName=file.getOriginalFilename();//获取文件名
-        System.out.println("@@@"+file.getOriginalFilename()+"!!!"+fileName);
+        System.out.println("获得文件："+file.getOriginalFilename());
+
         int uploadUserId=user.getUserId();//获取上传者的ID
+
         Date entyrTime=new SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
                 .parse(new SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
                         .format(new Date()));//数据样本录入时间
+
         List<SampleData> sampleData = readExcel.readXls(file,entyrTime);
         int datanum= sampleData.size();//样本数据数量
+        do_ExcelUpload_Log(entyrTime,uploadUserId,fileName,datanum);//将上传日志相关信息传入数据库
+        uploadSDExcelLog=sampleDataDao.selectUploadExcelID(entyrTime);//目的是从数据库中将与entryTime相同的日志取出，使用他的id
+
         for(SampleData sd : sampleData){
-            sampleDataDao.insertSampleData(sd);//插入数据至数据库
+            sampleDataDao.insertSampleData(sd,uploadSDExcelLog.getUploadSDExcel_log_id());//插入数据至数据库
         }
-        do_ExcelUpload_Log(entyrTime,uploadUserId,fileName,datanum);
+
+
 
 
         return 1;
     }
+
+
 
     /*
     * 录入文件的日志
