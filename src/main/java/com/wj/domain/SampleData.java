@@ -11,6 +11,10 @@ public class SampleData {
     private Double sampleData_three;
     private Double sampleData_four;
     private Double sampleData_five;
+    private Double average_value;
+    private Double variance;
+    private Double standard_Deviation;
+    private int status;
 
     public void setId(int id) {
         this.id = id;
@@ -74,5 +78,35 @@ public class SampleData {
 
     public Double getSampleData_five() {
         return sampleData_five;
+    }
+    public Double getAverage_value() {
+        return average_value;
+    }
+
+    public void setAverage_value(Double average_value) {
+        this.average_value = average_value;
+    }
+
+    public Double getVariance() {
+        return variance;
+    }
+
+    public void setVariance(Double variance) {
+        this.variance = variance;
+    }
+    public Double getStandard_Deviation() {
+        return standard_Deviation;
+    }
+
+    public void setStandard_Deviation(Double standard_Deviation) {
+        this.standard_Deviation = standard_Deviation;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 }

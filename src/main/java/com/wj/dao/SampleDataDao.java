@@ -17,7 +17,7 @@ import java.util.Date;
 public class SampleDataDao {
     private JdbcTemplate jdbcTemplate;
     private static String INSERT_SAMPLE_DATA_SQL=" INSERT INTO sample_Data(sample_date,entry_date,sample_data_one" +
-            " ,sample_data_two,sample_data_three,sample_data_four,sample_data_five,uploadSDExcel_log_id) VALUE(?,?,?,?,?,?,?,?) ";
+            " ,sample_data_two,sample_data_three,sample_data_four,sample_data_five,uploadSDExcel_log_id,average_value,variance,standard_Deviation) VALUE(?,?,?,?,?,?,?,?,?,?,?) ";
     private static String SELECT_UPLOADEXCEL_LOG_SQL="SELECT * from uploadSDExcel_log where upload_time = ?";
 
     @Autowired
@@ -26,7 +26,8 @@ public class SampleDataDao {
     public void insertSampleData(SampleData sampleData,int upload_log_id){
         Object[] arg={sampleData.getSampling_time()
                 ,sampleData.getEntry_Time(),sampleData.getSampleData_one(),sampleData.getSampleData_two()
-                ,sampleData.getSampleData_three(),sampleData.getSampleData_four(),sampleData.getSampleData_five(),upload_log_id};
+                ,sampleData.getSampleData_three(),sampleData.getSampleData_four(),sampleData.getSampleData_five(),upload_log_id
+                ,sampleData.getAverage_value(),sampleData.getVariance(),sampleData.getStandard_Deviation()};
          jdbcTemplate.update(INSERT_SAMPLE_DATA_SQL,arg);
     }
 
